@@ -3,8 +3,8 @@ import { translations, type Language, type TranslationKey } from '../data/transl
 
 export function useLanguage() {
   const [lang, setLang] = useState<Language>(() => {
-    const saved = localStorage.getItem('lang') as Language | null
-    return saved || 'pt'
+    localStorage.setItem('lang', 'en')
+    return 'en'
   })
 
   useEffect(() => {
@@ -13,7 +13,7 @@ export function useLanguage() {
 
   const t = useCallback(
     (key: TranslationKey): string => {
-      return translations[lang]?.[key] || translations.pt[key] || key
+      return translations[lang]?.[key] || translations.en[key] || key
     },
     [lang]
   )
